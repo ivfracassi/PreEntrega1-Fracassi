@@ -1,15 +1,22 @@
-import NavBar from "./components/NavBar"
-import ItemListContainer from "./components/itemListContainer"
+import NavBar from "./components/NavBar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ItemListContainer from "./components/itemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer"
 
-const App = () =>{
+function App(){
   return(
-    <>
-    <div>
-      <NavBar/>
-      <ItemListContainer greeting={"BIENVENIDOS A TECNOCOM"}/>
+    <div className="App">
+      <BrowserRouter>
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<ItemListContainer/>}/>
+          <Route path="/category/:categoryId" element={<ItemListContainer/>} />
+          <Route path="/item/:itemId" element={<ItemDetailContainer/>}/>
+          <Route path="*" element={<h1>404 NOT FOUND</h1>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
-    </>
   )
 }
 
-export default App
+export default App;
